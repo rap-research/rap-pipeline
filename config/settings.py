@@ -21,9 +21,17 @@ SCHEDULE_CITATIONS = os.getenv("SCHEDULE_CITATIONS", "0 3 * * *")
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 TAGGING_MODEL  = os.getenv("TAGGING_MODEL", "gpt-4o-mini")
 
+# ── 청킹 설정 ────────────────────────────────────────────────────────
+CHUNK_SIZE    = int(os.getenv("CHUNK_SIZE", 512))   # 토큰 단위
+CHUNK_OVERLAP = int(CHUNK_SIZE * 0.1)               # 10% 고정
+
+# ── LlamaParse 설정 ──────────────────────────────────────────────────
+LLAMA_CLOUD_API_KEY = os.getenv("LLAMA_CLOUD_API_KEY")
+
 # ── 임베딩 설정 ──────────────────────────────────────────────────────
-EMBEDDING_MODEL = os.getenv("EMBEDDING_MODEL", "BAAI/bge-m3")
-EMBEDDING_DIM   = int(os.getenv("EMBEDDING_DIM", 1024))
+EMBEDDING_MODEL  = os.getenv("EMBEDDING_MODEL",  "BAAI/bge-m3")
+EMBEDDING_DIM    = int(os.getenv("EMBEDDING_DIM", 1024))
+EMBEDDING_DEVICE = os.getenv("EMBEDDING_DEVICE", "cpu")  # cpu | mps | cuda
 
 # ── DB 설정 ──────────────────────────────────────────────────────────
 POSTGRES_HOST     = os.getenv("POSTGRES_HOST", "localhost")

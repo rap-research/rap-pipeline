@@ -18,7 +18,23 @@ def collect_papers_dag():
         from pipeline.collect.arxiv_client import fetch_papers
         return fetch_papers(context["logical_date"])
 
-    collect()
+    @task
+    def parse_embed(raw_path: str) -> str:
+        from pipeline.process.parser import parse_embed_save
+        return parse_embed_save(raw_path)
+
+    @task
+    def tag(raw_path: str) -> str:
+        from pipeline.process.tagger import tag_papers
+        return tag_papers(raw_path)
+
+    @task
+    def save(embedded_path: str, tags_path: str, **context) -> str:
+        from pipeline.process.tagger import save_processed
+        return save_processed(embedded_path, tags_path, context["logical_date"])
+
+    raw = collect()
+    save(parse_embed(raw), tag(raw))
 
 
 collect_papers_dag()
