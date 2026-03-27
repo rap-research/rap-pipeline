@@ -120,4 +120,4 @@ make help     # 명령어 목록
 - Airflow 메타DB는 로컬 개발 시 SQLite를 사용합니다. (`.airflow/airflow.db`)
 - 프로덕션 환경에서는 PostgreSQL로 변경을 권장합니다.
 - Semantic Scholar API는 100 req/5min 제한이 있어 요청 간 3초 간격을 둡니다.
-- arXiv API는 요청 간 3초 간격을 권장합니다.ㄴ
+- arXiv API는 요청 간 3초 간격을 권장합니다.

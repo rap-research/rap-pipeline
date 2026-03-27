@@ -1,3 +1,7 @@
 .env
 .airflow
 .idea
+
+.venv
+
+plan.md
