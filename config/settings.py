@@ -4,9 +4,14 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # ── 수집 설정 ────────────────────────────────────────────────────────
-COLLECT_CATEGORIES      = ["cs.AI", "cs.LG", "cs.CL", "cs.CV"]
-COLLECT_MAX_RESULTS     = int(os.getenv("COLLECT_MAX_RESULTS", 100))
-COLLECT_DATE_RANGE_DAYS = int(os.getenv("COLLECT_DATE_RANGE_DAYS", 1))
+COLLECT_CATEGORIES  = ["cs.AI", "cs.MA", "cs.SE"]
+COLLECT_START_DATE  = os.getenv("COLLECT_START_DATE", None)   # YYYY-MM-DD, 없으면 오늘만 수집
+_max = os.getenv("COLLECT_MAX_RESULTS", None)
+COLLECT_MAX_RESULTS = int(_max) if _max else None              # 없으면 전체 수집
+
+# ── 파일 저장 경로 ───────────────────────────────────────────────────
+RAW_DATA_DIR       = os.getenv("RAW_DATA_DIR",       "data/raw")
+PROCESSED_DATA_DIR = os.getenv("PROCESSED_DATA_DIR", "data/processed")
 
 # ── 스케줄 설정 ──────────────────────────────────────────────────────
 SCHEDULE_COLLECT   = os.getenv("SCHEDULE_COLLECT",   "0 2 * * *")
